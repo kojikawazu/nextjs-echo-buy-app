@@ -1,5 +1,7 @@
 'use client';
+
 import useSWR from 'swr';
+import Link from 'next/link';
 
 // types
 import { AlbumDataType } from '@/app/types/album-types';
@@ -7,7 +9,7 @@ import { AlbumDataType } from '@/app/types/album-types';
 import { fetcher } from '@/app/lib/utils/fetcher';
 // components
 import LogoutBtn from '@/app/components/auth/LogoutBtn';
-import Link from 'next/link';
+import PaymentButton from '@/app/components/stripe/PaymentBtn';
 
 type DetailPageProps = {
     params: {
@@ -27,10 +29,7 @@ const DetailPage = ({ params }: DetailPageProps) => {
     const url = `${process.env.NEXT_PUBLIC_DATA_ALBUM_API_URL}/${albumId}`;
 
     // アルバムデータを取得
-    const { data: album, error } = useSWR<AlbumDataType>(
-        url,
-        fetcher,
-    );
+    const { data: album, error } = useSWR<AlbumDataType>(url, fetcher);
 
     if (error) return <div className="text-center text-red-500">Error: {error.message}</div>;
     if (!album) return <div className="text-center">Loading...</div>;
@@ -43,7 +42,10 @@ const DetailPage = ({ params }: DetailPageProps) => {
                 <h1 className="text-2xl font-bold mb-4">アルバム詳細</h1>
             </div>
 
-            <Link href="/dashboard/list" className="text-blue-500 hover:underline mb-4 inline-block">
+            <Link
+                href="/dashboard/list"
+                className="text-blue-500 hover:underline mb-4 inline-block"
+            >
                 ← アルバムリストに戻る
             </Link>
             <div className="bg-white shadow-lg rounded-lg p-6 mt-4">
@@ -53,6 +55,9 @@ const DetailPage = ({ params }: DetailPageProps) => {
                 </div>
                 <div className="mt-4">
                     <p className="text-sm text-gray-500">ユーザーID: {album.userId}</p>
+                </div>
+                <div className="mt-6">
+                    <PaymentButton amount={1000} productName={`アルバム ${album.id}`} />
                 </div>
             </div>
         </div>
