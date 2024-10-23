@@ -9,6 +9,10 @@ npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-pret
 npm install next-auth
 # zodとreact-hook-formをインストール
 npm install zod react-hook-form @hookform/resolvers
+# Stripeをインストール
+npm install @stripe/stripe-js @stripe/react-stripe-js
+# SWRをインストール
+npm install swr
 ```
 
 ## ランダムなシークレットキーを生成
