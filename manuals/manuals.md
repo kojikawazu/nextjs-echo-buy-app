@@ -13,6 +13,8 @@ npm install zod react-hook-form @hookform/resolvers
 npm install stripe @stripe/stripe-js @stripe/react-stripe-js
 # SWRをインストール
 npm install swr
+# axiosをインストール
+npm install axios
 ```
 
 ## ランダムなシークレットキーを生成
