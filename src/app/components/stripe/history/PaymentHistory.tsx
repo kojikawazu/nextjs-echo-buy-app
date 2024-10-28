@@ -2,6 +2,7 @@
 import { PaymentHistoryItem } from '@/app/types/payment-types';
 // components
 import PaymentHistoryList from '@/app/components/stripe/history/PaymentHistoryList';
+import GoBackToAlbumList from '@/app/components/albums/GoBackToAlbumList';
 
 interface PaymentHistoryProps {
     orderList: PaymentHistoryItem[];
@@ -16,7 +17,10 @@ const PaymentHistory = ({ orderList }: PaymentHistoryProps) => {
     return (
         <>
             <div className="flex justify-center items-center m-4">
-                <h1 className="text-2xl font-bold mb-4">購入履歴ページ</h1>
+                <div className="flex flex-col items-center">
+                    <h1 className="text-2xl font-bold mb-4">購入履歴ページ</h1>
+                    <GoBackToAlbumList />
+                </div>
             </div>
 
             <PaymentHistoryList orderList={orderList} />

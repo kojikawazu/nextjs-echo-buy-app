@@ -24,10 +24,7 @@ const AlbumDetail = ({ album }: AlbumDetailProps) => {
                 <h1 className="text-2xl font-bold mb-4">アルバム詳細</h1>
             </div>
 
-            <Link
-                href="/dashboard/list"
-                className="text-blue-500 hover:underline mb-4 inline-block"
-            >
+            <Link href="/albums/list" className="text-blue-500 hover:underline mb-4 inline-block">
                 ← アルバムリストに戻る
             </Link>
             <div className="bg-white shadow-lg rounded-lg p-6 mt-4">

@@ -9,7 +9,7 @@ import { fetcher } from '@/app/lib/utils/fetcher';
 // components
 import AlbumDetail from '@/app/components/albums/AlbumDetail';
 
-type DetailPageProps = {
+type AlbumDetailPageProps = {
     params: {
         albumId: string;
     };
@@ -20,7 +20,7 @@ type DetailPageProps = {
  * @param params albumId
  * @returns JSX.Element
  */
-const DetailPage = ({ params }: DetailPageProps) => {
+const AlbumDetailPage = ({ params }: AlbumDetailPageProps) => {
     // アルバムID
     const { albumId } = params;
     // アルバムAPI URL
@@ -39,4 +39,4 @@ const DetailPage = ({ params }: DetailPageProps) => {
     );
 };
 
-export default DetailPage;
+export default AlbumDetailPage;

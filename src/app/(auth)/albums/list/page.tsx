@@ -10,10 +10,10 @@ import { fetcher } from '@/app/lib/utils/fetcher';
 import AlbumList from '@/app/components/albums/AlbumList';
 
 /**
- * リストページ
+ * Albumリストページ
  * @returns JSX.Element
  */
-const ListPage = () => {
+const AlbumListPage = () => {
     // アルバムAPI URL
     const url = process.env.NEXT_PUBLIC_DATA_ALBUMS_API_URL as string;
     // アルバムデータを取得
@@ -29,4 +29,4 @@ const ListPage = () => {
     );
 };
 
-export default ListPage;
+export default AlbumListPage;
