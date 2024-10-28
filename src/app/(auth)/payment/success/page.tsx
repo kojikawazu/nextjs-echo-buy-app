@@ -1,5 +1,5 @@
 //import { useSearchParams } from 'next/navigation';
-import PaymentSuccess from '@/app/components/payments/PaymentSuccess';
+import PaymentSuccess from '@/app/components/stripe/success/PaymentSuccess';
 
 /**
  * 支払い成功ページ

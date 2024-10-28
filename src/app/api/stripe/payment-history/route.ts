@@ -13,9 +13,9 @@ export async function GET() {
         });
 
         // 支払い履歴のデータを整形
-        const orderList = sessions.data.map(session => {
+        const orderList = sessions.data.map((session) => {
             const lineItems = session.line_items?.data || [];
-            const productNames = lineItems.map(item => item.description).join(', ');
+            const productNames = lineItems.map((item) => item.description).join(', ');
 
             return {
                 id: session.id,
@@ -29,9 +29,10 @@ export async function GET() {
                 isGuest: !session.customer,
                 expiresAt: new Date(session.expires_at * 1000).toISOString(),
                 sessionStatus: session.status,
-                paymentIntentId: typeof session.payment_intent === 'string'
-                    ? session.payment_intent
-                    : session.payment_intent?.id || null,
+                paymentIntentId:
+                    typeof session.payment_intent === 'string'
+                        ? session.payment_intent
+                        : session.payment_intent?.id || null,
                 customerCreation: session.customer_creation,
                 // 新しく追加したフィールド
                 productNames: productNames,

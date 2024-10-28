@@ -1,4 +1,4 @@
-import PaymentCancel from '@/app/components/payments/PaymentCancel';
+import PaymentCancel from '@/app/components/stripe/cancel/PaymentCancel';
 
 /**
  * 支払いキャンセルページ

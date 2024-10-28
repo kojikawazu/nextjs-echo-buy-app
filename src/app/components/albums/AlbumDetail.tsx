@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AlbumDataType } from '@/app/types/album-types';
 // components
 import LogoutBtn from '@/app/components/auth/LogoutBtn';
-import PaymentButton from '@/app/components/stripe/PaymentBtn';
+import PaymentButton from '@/app/components/stripe/common/PaymentBtn';
 
 interface AlbumDetailProps {
     album: AlbumDataType;

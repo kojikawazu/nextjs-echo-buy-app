@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 // types
 import { PaymentHistoryItem } from '@/app/types/payment-types';
 // components
-import PaymentHistory from '@/app/components/stripe/PaymentHistory';
+import PaymentHistory from '@/app/components/stripe/history/PaymentHistory';
 
 /**
  * 購入履歴ページ
@@ -20,9 +20,9 @@ const PaymentHistoryPage = async () => {
         });
 
         // 支払い履歴のデータを整形
-        orderList = sessions.data.map(session => {
+        orderList = sessions.data.map((session) => {
             const lineItems = session.line_items?.data || [];
-            const productNames = lineItems.map(item => item.description).join(', ');
+            const productNames = lineItems.map((item) => item.description).join(', ');
 
             return {
                 id: session.id,
@@ -46,18 +46,13 @@ const PaymentHistoryPage = async () => {
         //console.log('orderList', orderList);
     } catch (err) {
         console.error(err);
-        return <div>エラー:  {String(err)}</div>;
+        return <div>エラー: {String(err)}</div>;
     }
 
     return (
-        <div>
-            <div className="flex justify-center items-center m-4">
-                <h1 className="text-2xl font-bold mb-4">購入履歴ページ</h1>
-            </div>
-            <Suspense fallback={<div>読み込み中...</div>}>
-                <PaymentHistory orderList={orderList} />
-            </Suspense>
-        </div>
+        <Suspense fallback={<div>読み込み中...</div>}>
+            <PaymentHistory orderList={orderList} />
+        </Suspense>
     );
 };
 
