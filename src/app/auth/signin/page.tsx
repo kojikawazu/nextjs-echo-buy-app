@@ -1,65 +1,82 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { signInSchema } from '@/app/lib/schema/auth-schema';
+
+/**
+ * サインインフォームデータ
+ */
+type SignInFormData = z.infer<typeof signInSchema>;
+
 /**
  * サインインページ
  * @returns JSX.Element
  */
 export default function SignIn() {
-    const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
-    const [password, setPassword] = useState('');
+    // ルーター
     const router = useRouter();
+    // フォーム
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setError,
+    } = useForm<SignInFormData>({
+        resolver: zodResolver(signInSchema),
+    });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError('');
-
+    /**
+     * サインイン
+     * @param data サインインフォームデータ
+     */
+    const onSubmit = async (data: SignInFormData) => {
         try {
-            signInSchema.parse({ email, password });
-
             const result = await signIn('credentials', {
-                email,
-                password,
+                email: data.email,
+                password: data.password,
                 redirect: false,
             });
 
-            if (result?.error) {
-                setError('サインインに失敗しました。');
-            } else {
+            if (result?.ok) {
                 router.push('/dashboard');
+            } else if (result?.error) {
+                setError('root', { message: 'サインインに失敗しました。' });
+            } else {
+                setError('root', { message: '予期せぬエラーが発生しました。' });
             }
         } catch (error) {
-            if (error instanceof z.ZodError) {
-                setError(error.errors[0].message);
-            } else {
-                setError('予期せぬエラーが発生しました。');
-            }
+            console.error(error);
+            setError('root', { message: '予期せぬエラーが発生しました。' });
         }
     };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-4xl font-bold mb-8">サインイン</h1>
-            {error && <p className="text-red-500 mb-4">{error}</p>}
-            <form onSubmit={handleSubmit} className="w-full max-w-xs">
+            {errors.root && <p className="text-red-500 mb-4">{errors.root.message}</p>}
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit(onSubmit)(e);
+                }}
+                className="w-full max-w-xs"
+            >
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
                         メールアドレス
                     </label>
                     <input
+                        {...register('email')}
                         type="email"
                         id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        required
                     />
+                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                 </div>
                 <div className="mb-6">
                     <label
@@ -69,13 +86,12 @@ export default function SignIn() {
                         パスワード
                     </label>
                     <input
+                        {...register('password')}
                         type="password"
                         id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        required
                     />
+                    {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                 </div>
                 <div className="flex items-center justify-between">
                     <button

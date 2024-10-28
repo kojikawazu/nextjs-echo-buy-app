@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
     const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
     // 保護されたルートのリスト
-    const protectedRoutes = ['/dashboard', '/profile', '/settings'];
+    const protectedRoutes = ['/dashboard', '/profile', '/payment'];
 
     // 現在のパスが保護されたルートかどうかをチェック
     const isProtectedRoute = protectedRoutes.some((route) =>

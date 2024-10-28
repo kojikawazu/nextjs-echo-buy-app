@@ -2,7 +2,7 @@
 
 ## Summary
 
-- TODO
+-   TODO
 
 ## Frontend
 
@@ -12,6 +12,8 @@
 [![NextAuth](https://img.shields.io/badge/NextAuth-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://next-auth.js.org)
 [![React Hook Form](https://img.shields.io/badge/React_Hook_Form-EC5990?style=for-the-badge&logo=react&logoColor=white)](https://react-hook-form.com)
 [![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev)
+[![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)](https://stripe.com)
+[![SWR](https://img.shields.io/badge/SWR-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://swr.vercel.app)
 
 ## Backend
 
@@ -25,11 +27,13 @@
 
 ## URL
 
-- [Next.js](https://nextjs.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [NextAuth](https://next-auth.js.org)
-- [React Hook Form](https://react-hook-form.com)
-- [Zod](https://zod.dev)
-- [Go](https://golang.org/)
-- [Echo](https://echo.labstack.com/)
+-   [Next.js](https://nextjs.org)
+-   [TypeScript](https://www.typescriptlang.org)
+-   [Tailwind CSS](https://tailwindcss.com)
+-   [NextAuth](https://next-auth.js.org)
+-   [React Hook Form](https://react-hook-form.com)
+-   [Zod](https://zod.dev)
+-   [Go](https://golang.org/)
+-   [Echo](https://echo.labstack.com/)
+-   [Stripe](https://stripe.com)
+-   [SWR](https://swr.vercel.app)
